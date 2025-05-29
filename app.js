@@ -1,6 +1,10 @@
 const express = require("express"); //import express
 const app = express(); //create app
-const PORT = 3000; //port
+const PORT = process.env.SERVER_PORT || 3000; //port
+
+//custom middleware
+const notFound = require("./middlewares/notFound");
+const errorHandler = require("./middlewares/errorHandler");
 
 //middleware
 app.use(express.static("public"));
@@ -10,6 +14,10 @@ app.use(express.json());
 app.get("/", (req, res) => {
     res.send("Hello World!");
 });
+
+//use custom middleware
+app.use(notFound)
+app.use(errorHandler)
 
 //listen
 app.listen(PORT, () => {
