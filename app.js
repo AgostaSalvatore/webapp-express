@@ -8,10 +8,12 @@ const movieRouter = require("./routers/movieRouter");
 //custom middleware
 const notFound = require("./middlewares/notFound");
 const errorHandler = require("./middlewares/errorHandler");
+const imagePathMiddleware = require("./middlewares/imagePath");
 
 //middleware
 app.use(express.static("public"));
 app.use(express.json());
+app.use(imagePathMiddleware);
 
 //entry point
 app.get("/", (req, res) => {
