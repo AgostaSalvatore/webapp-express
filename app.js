@@ -1,7 +1,7 @@
 const express = require("express"); //import express
 const app = express(); //create app
 const PORT = process.env.SERVER_PORT || 3000; //port
-const cors = require("cors");
+const cors = require("cors"); //import cors
 
 //router
 const movieRouter = require("./routers/movieRouter");
