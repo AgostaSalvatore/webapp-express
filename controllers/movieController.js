@@ -61,9 +61,28 @@ const store = (req, res) => {
     })
 }
 
+const storeReview = (req, res) => {
+    const { id } = req.params
+
+    const { name, vote, text } = req.body
+
+    const sql = 'INSERT INTO reviews (name, vote, text, movie_id) VALUES (?, ?, ?, ?)'
+
+    connection.query(sql, [name, vote, text, id], (err, result) => {
+        if (err) return res.status(500).json({ error: "Database Query Failed:" + err });
+
+        res.status(201).json({
+            status: 'success',
+            message: 'Review created successfully',
+            data: result
+        })
+    })
+}
+
 
 module.exports = {
     index,
     show,
-    store
+    store,
+    storeReview
 }
