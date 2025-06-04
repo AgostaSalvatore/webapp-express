@@ -6,8 +6,6 @@ const movieController = require("../controllers/movieController");
 
 router.get("/", movieController.index);
 router.get("/:id", movieController.show);
-router.post('/store', upload.single('image'), (req, res) => {
-    res.json(req.file)
-})
+router.post('/', upload.single('image'), movieController.store)
 
 module.exports = router;
