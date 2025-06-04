@@ -74,7 +74,7 @@ const storeReview = (req, res) => {
         res.status(201).json({
             status: 'success',
             message: 'Review created successfully',
-            data: result
+            id: result.insertId
         })
     })
 }
