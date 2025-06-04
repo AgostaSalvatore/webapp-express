@@ -21,7 +21,7 @@ const show = (req, res) => {
     const movieSql = `
     SELECT M.*, ROUND(AVG(R.vote)) as average_vote 
     FROM movies M
-    JOIN reviews R ON R.movie_id = M.id 
+    LEFT JOIN reviews R ON R.movie_id = M.id 
     WHERE M.id = ?`;
 
     const reviewSql = 'SELECT * FROM reviews WHERE movie_id = ?';
@@ -60,6 +60,7 @@ const store = (req, res) => {
         })
     })
 }
+
 
 module.exports = {
     index,
